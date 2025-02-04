@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="stylesheets/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <!-- Logo here -->
+            <a href="index.html">
+                <img src="images/dashboard.png" alt="Logo">
+            </a>
+        </div>
+
+        <!-- Top navigation bar -->
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#posts">Posts</a></li>
+                <li><a href="organisations.html">Organisations</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="login.html" class="donate-button">Sign out</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="hideFunctions">
+        <!-- Side bar -->
+        <aside>
+            <div class="profile">
+                <p>Profile: <span id="profile-name">{{ name }}</span></p>
+                <p>Role: {{ role }}</p>
+            </div>
+            <ul>
+                <li><a href="#" data-section="profile">Profile</a></li>
+                <li v-show="serverAdminFlag || serverManagerFlag"><a href="#" data-section="viewMember">View Member</a>
+                </li>
+                <li v-show="serverAdminFlag || serverManagerFlag"><a href="#" data-section="manageEvents">Manage Branch
+                        Events</a></li>
+                <li v-show="serverAdminFlag || serverManagerFlag"><a href="#" data-section="managePosts">Manage
+                        Posts</a></li>
+                <li v-show="serverAdminFlag"><a href="#" data-section="manageUsers">Manage Users</a></li>
+                <li v-show="serverAdminFlag"><a href="#" data-section="manageBranches">Manage Branches</a></li>
+            </ul>
+        </aside>
+    </div>
+    <main id="main-content">
+            <!-- Profile section with user information -->
+    <section id="profile">
+        <h2>Profile</h2>
+        <div class="profile-info">
+            <div class="info-row"><strong>Username:</strong> <span id="display-username">UserName</span></div>
+            <div class="info-row"><strong>Role:</strong> <span id="display-role">User</span></div>
+            <div class="info-row"><strong>Phone:</strong> <span id="display-phone">123-456-7890</span></div>
+            <div class="info-row"><strong>Address:</strong> <span id="display-address">123 Main St</span></div>
+            <div class="info-row"><strong>Email:</strong> <span id="display-email">user@example.com</span></div>
+            <div class="info-row"><strong>Organization:</strong> <span id="display-organization">Organization Name</span></div>
+            <div class="info-row"><strong>Email Notifications:</strong> <span id="display-email-notification">Off</span></div>
+            <button type="button" id="edit-button">Edit</button>
+        </div>
+
+        <!-- Edit form (initially hidden) -->
+        <form id="profile-form" class="hidden">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="UserName">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" name="phone" placeholder="123-456-7890">
+            </div>
+            <div class="form-group">
+                <label for="street_num">Street Number:</label>
+                <input type="text" id="street_num" name="street_num" placeholder="123">
+            </div>
+            <div class="form-group">
+                <label for="street_name">Street Name:</label>
+                <input type="text" id="street_name" name="street_name" placeholder="Main St">
+            </div>
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" placeholder="Sample City">
+            </div>
+            <div class="form-group">
+                <label for="state_region">State/Region:</label>
+                <input type="text" id="state_region" name="state_region" placeholder="Sample State">
+            </div>
+            <div class="form-group">
+                <label for="postcode">Postcode:</label>
+                <input type="text" id="postcode" name="postcode" placeholder="12345">
+            </div>
+            <div class="form-group">
+                <label for="country">Country:</label>
+                <input type="text" id="country" name="country" placeholder="Sample Country">
+            </div>
+            <div class="form-group">
+                <label for="email-notification">Email Notifications:</label>
+                <input type="checkbox" id="email-notification" name="email-notification">
+            </div>
+            <div class="form-group">
+                <button type="submit" id="save-changes">Save Changes</button>
+            </div>
+        </form>
+    </section>
+
+        <!-- View Members section -->
+        <section id="viewMember" class="hidden">
+            <h2>View Members</h2>
+            <div class="profile-info">
+                <div class="info-row branch-name"></div>
+                <table class="members-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody id="members"></tbody>
+                </table>
+            </div>
+        </section>
+
+<!-- Manage Events section -->
+<section id="manageEvents" class="section hidden">
+    <h2>Manage Events</h2>
+    <div class="profile-info">
+        <div class="info-row branch-name"></div>
+        <button type="button" id="add-event-button">Add New Event</button>
+        <table class="events-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Dates</th>
+                    <th>Description</th>
+                    <th>Location</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody id="events"></tbody>
+        </table>
+    </div>
+
+    <!-- Add Event Modal -->
+    <div id="add-event-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button" id="close-add-event-modal">&times;</span>
+            <h2>Add Event</h2>
+            <form id="add-event-form">
+                <div class="form-group">
+                    <label for="new-event-title">Event Name:</label>
+                    <input type="text" id="new-event-title" name="event_title" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-event-date">Event Date:</label>
+                    <input type="date" id="new-event-date" name="event_date" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-event-desc">Description:</label>
+                    <textarea id="new-event-desc" name="event_desc" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="new-event-street-num">Street Number:</label>
+                    <input type="text" id="new-event-street-num" name="event_street_num" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-event-street-name">Street Name:</label>
+                    <input type="text" id="new-event-street-name" name="event_street_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-event-city">City:</label>
+                    <input type="text" id="new-event-city" name="event_city" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-event-state-region">State/Region:</label>
+                    <input type="text" id="new-event-state-region" name="event_state_region" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-event-postcode">Postcode:</label>
+                    <input type="text" id="new-event-postcode" name="event_postcode" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-event-country">Country:</label>
+                    <input type="text" id="new-event-country" name="event_country" required>
+                </div>
+                <button type="submit">Add Event</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Event Modal -->
+    <div id="edit-event-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button" id="close-edit-event-modal">&times;</span>
+            <h2>Edit Event</h2>
+            <form id="edit-event-form">
+                <div class="form-group">
+                    <label for="edit-event-title">Event Name:</label>
+                    <input type="text" id="edit-event-title" name="event_title" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-event-date">Event Date:</label>
+                    <input type="date" id="edit-event-date" name="event_date" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-event-desc">Description:</label>
+                    <textarea id="edit-event-desc" name="event_desc" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="edit-event-street-num">Street Number:</label>
+                    <input type="text" id="edit-event-street-num" name="event_street_num" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-event-street-name">Street Name:</label>
+                    <input type="text" id="edit-event-street-name" name="event_street_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-event-city">City:</label>
+                    <input type="text" id="edit-event-city" name="event_city" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-event-state-region">State/Region:</label>
+                    <input type="text" id="edit-event-state-region" name="event_state_region" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-event-postcode">Postcode:</label>
+                    <input type="text" id="edit-event-postcode" name="event_postcode" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-event-country">Country:</label>
+                    <input type="text" id="edit-event-country" name="event_country" required>
+                </div>
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+
+                <!-- Manage Posts section -->
+                <section id="managePosts" class="hidden">
+                    <h2>Manage Posts</h2>
+                    <div class="profile-info">
+                        <button type="button" id="add-post-button">Add a new Post</button>
+                        <table class="posts-table">
+                            <thead>
+                                <tr>
+                                    <th>Post Title</th>
+                                    <th>Post Content</th>
+                                    <th>Post Time</th>
+                                    <th>Posted by</th>
+                                    <th>Branch</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody id="posts"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Add Post Modal -->
+                <div id="add-post-modal" class="modal hidden">
+                    <div class="modal-content">
+                        <span class="close-button" id="close-add-post-modal">&times;</span>
+                        <h2>Add Post</h2>
+                        <form id="add-post-form">
+                            <div class="form-group">
+                                <label for="new-post-title">Post Title:</label>
+                                <input type="text" id="new-post-title" name="post_title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-post-content">Post Content:</label>
+                                <textarea id="new-post-content" name="post_content" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-post-visibility">Visible to All Members:</label>
+                                <input type="checkbox" id="post-visibility" name="post_visibility">
+                            </div>
+                            <button type="submit">Add Post</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Edit Post Modal -->
+                <div id="edit-post-modal" class="modal hidden">
+                    <div class="modal-content">
+                        <span class="close-button" id="close-edit-post-modal">&times;</span>
+                        <h2>Edit Post</h2>
+                        <form id="edit-post-form">
+                            <input type="hidden" id="edit-post-id" name="post_id">
+                            <div class="form-group">
+                                <label for="edit-post-title">Post Title:</label>
+                                <input type="text" id="edit-post-title" name="post_title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-post-content">Post Content:</label>
+                                <textarea id="edit-post-content" name="post_content" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-post-visibility">Visible to All Members:</label>
+                                <input type="checkbox" id="edit-post-visibility" name="post_visibility">
+                            </div>
+                            <button type="submit">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+
+
+        <!-- Manage Users section -->
+        <section id="manageUsers" class="hidden">
+            <h2>Manage Users &#40;Admin&#41;</h2>
+            <button type="button" id="add-user-button">Add a new User</button>
+            <div class="profile-info">
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Email</th>
+                            <th>Branch</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users"></tbody>
+                </table>
+            </div>
+        </section>
+        <!-- Add User Modal -->
+        <div id="add-user-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-button" id="close-add-user-modal">&times;</span>
+                <h2>Add User</h2>
+                <form id="add-user-form">
+                    <div class="form-group">
+                        <label for="new-first-name">First Name:</label>
+                        <input type="text" id="new-first-name" name="first_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-last-name">Last Name:</label>
+                        <input type="text" id="new-last-name" name="last_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-username">Username:</label>
+                        <input type="text" id="new-username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password">Password:</label>
+                        <input type="password" id="new-password" name="pass_word" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-email-address">Email Address:</label>
+                        <input type="email" id="new-email-address" name="email_address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-role-permission">Role:</label>
+                        <select id="new-role-permission" name="role_permission" required>
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+                            <option value="manager">Manager</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-email-notifications">Email Notifications:</label>
+                        <input type="checkbox" id="new-email-notifications" name="email_notifications">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-phone-number">Phone Number:</label>
+                        <input type="text" id="new-phone-number" name="phone_number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-branch-id">Branch:</label>
+                        <input type="text" id="new-branch-id" name="branch_id" required>
+                    </div>
+                    <button type="submit">Add User</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Edit User Modal -->
+        <div id="edit-user-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-button" id="close-edit-user-modal">&times;</span>
+                <h2>Edit User</h2>
+                <form id="edit-user-form">
+                    <input type="hidden" id="edit-user-id" name="user_id">
+                    <div class="form-group">
+                        <label for="edit-first-name">First Name:</label>
+                        <input type="text" id="edit-first-name" name="first_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-last-name">Last Name:</label>
+                        <input type="text" id="edit-last-name" name="last_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-username">Username:</label>
+                        <input type="text" id="edit-username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-email-address">Email Address:</label>
+                        <input type="email" id="edit-email-address" name="email_address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-role-permission">Role:</label>
+                        <select id="edit-role-permission" name="role_permission" required>
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+                            <option value="manager">Manager</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-email-notifications">Email Notifications:</label>
+                        <input type="checkbox" id="edit-email-notifications" name="email_notifications">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-phone-number">Phone Number:</label>
+                        <input type="text" id="edit-phone-number" name="phone_number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-branch-id">Branch:</label>
+                        <input type="text" id="edit-branch-id" name="branch_id" required>
+                    </div>
+                    <button type="submit">Save Changes</button>
+                </form>
+            </div>
+        </div>
+
+
+
+
+        <!-- Manage Branches section -->
+        <section id="manageBranches" class="hidden">
+            <h2>Manage Branches &#40;Admin&#41;</h2>
+            <button type="button" id="add-branch-button">Add Branch</button>
+            <div class="profile-info">
+                <table class="branches-table">
+                    <thead>
+                        <tr>
+                            <th>Branch Name</th>
+                            <th>Description</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="branches"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Add Branch Modal -->
+        <div id="add-branch-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-button" id="close-add-branch-modal">&times;</span>
+                <h2>Add Branch</h2>
+                <input type="hidden" id="edit-branch-id2" name="branch_id">
+                <form id="add-branch-form">
+                    <div class="form-group">
+                        <label for="new-branch-name">Branch Name:</label>
+                        <input type="text" id="new-branch-name" name="branch_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-branch-desc">Description:</label>
+                        <textarea id="new-branch-desc" name="branch_desc" required></textarea>
+                    </div>
+                    <button type="submit">Add Branch</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Edit Branch Modal -->
+        <div id="edit-branch-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-button" id="close-edit-branch-modal">&times;</span>
+                <h2>Edit Branch</h2>
+                <form id="edit-branch-form">
+                    <div class="form-group">
+                        <label for="edit-branch-name">Branch Name:</label>
+                        <input type="text" id="edit-branch-name" name="branch_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-branch-desc">Description:</label>
+                        <textarea id="edit-branch-desc" name="branch_desc" required></textarea>
+                    </div>
+                    <button type="submit">Save Changes</button>
+                </form>
+            </div>
+        </div>
+
+
+
+    </main>
+
+    <script src="javascripts/vue.js" defer></script>
+    <script src="javascripts/dashboard.js" defer></script>
+</body>
+
+</html>

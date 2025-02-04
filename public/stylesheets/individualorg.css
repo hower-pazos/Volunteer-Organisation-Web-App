@@ -1,0 +1,324 @@
+/* General styles */
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: white;
+    color: #3889f1;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    z-index: 1000;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo img {
+    height: 3rem;
+    margin-right: 1rem;
+}
+
+header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+header nav ul li {
+    margin: 0 1rem;
+}
+
+header nav ul li a {
+    color: #3889f1;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+header nav ul li a.donate-button {
+    background-color: #3889f1;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: white;
+}
+
+.individual-org {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 85%;
+    width: 100%;
+    background:
+    /* top, transparent black, faked with gradient */
+    linear-gradient(
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.7)
+    ),
+    /* bottom, image */
+    url(images/scc1.jpeg);
+
+    /* background-image: url(images/scc1.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat; */
+}
+
+.org-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.org-details {
+    flex: 2 1 500px;
+    padding: 2rem;
+}
+
+.org-details h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #3889f1;
+    text-shadow: 10px, 10px, black;
+}
+
+.org-details p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    text-shadow: 10px, 4px black;
+}
+
+.org-buttons {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.org-buttons .join-button,
+.org-buttons .email-button {
+    background-color: #3889f1;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.org-buttons .join-button:hover,
+.org-buttons .email-button:hover {
+    background-color: #0056b3;
+}
+
+
+/* events */
+.events-list {
+    width: 80%;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.events-list h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.events-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.event-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: calc(33.333% - 1rem);
+    margin-bottom: 1rem;
+}
+
+.event-card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.event-card-details {
+    padding: 1rem;
+    text-align: left;
+}
+
+.event-card-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.event-card-date, .event-card-location {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3889f1;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Footer */
+.cta-section {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 20px;
+    margin: 2rem auto;
+    max-width: 800px;
+}
+
+.cta-section h2 {
+    color: #ffffff;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.cta-button {
+    background-color: #0554F2;
+    color: #ffffff;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+footer {
+    background-color: #5097f6;
+    color: #fff;
+    width: 100%;
+    margin: 0px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-logo img {
+    width: 200px;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.footer-column {
+    margin: 0 1rem;
+    min-width: 200px;
+}
+
+.footer-column h3 {
+    color: #0554F2;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-column ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.875rem;
+}
+
+.footer-column ul li a:hover {
+    text-decoration: underline;
+}
+
+.subscribe-form {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.subscribe-form input[type="email"] {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    font-size: 0.875rem;
+}
+
+.subscribe-form button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #0554F2;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+main {
+    flex-grow: 1;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f0f0;
+    box-sizing: border-box;
+}

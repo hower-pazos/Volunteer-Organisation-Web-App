@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-weight: 600; /* Bold */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: #3889f1;
+    color: white;
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo img {
+    height: 3rem;
+    margin-right: 1rem;
+}
+
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+}
+
+header nav ul li {
+    margin: 0 1rem;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+header nav ul li a.donate-button {
+    background-color: black;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: white;
+    cursor: pointer; /* Add this line to change cursor to pointer */
+}
+
+aside {
+    background-color: #04224b;
+    color: white;
+    padding: 0;
+    width: 15rem;
+    flex-shrink: 0;
+    height: calc(100vh - 4rem);
+    box-sizing: border-box;
+    position: fixed;
+    top: 4rem;
+    left: 0;
+}
+
+aside .profile {
+    padding: 1rem;
+    background-color: #4b7cbb;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+aside ul {
+    list-style-type: none;
+    padding: 1rem;
+    margin: 0;
+}
+
+aside ul li {
+    margin-bottom: 1rem;
+}
+
+aside ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+aside ul li a.active {
+    background-color: #4CAF50;
+}
+
+main {
+    flex-grow: 1;
+    padding: 6rem 2rem 2rem 17rem;
+    background-color: #f0f0f0;
+    box-sizing: border-box;
+}
+
+main section {
+    margin-bottom: 2.5rem;
+}
+
+.profile-info {
+    margin-bottom: 2rem;
+}
+
+.profile-info .info-row {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-info .info-row strong {
+    flex: 0 0 150px; /* Fix the width */
+    color: #333;
+}
+
+.profile-info .info-row span {
+    flex: 1;
+    font-weight: 400; /* Normal weight for content */
+    color: #555; /* Different color for content */
+    background-color: #e0e0e0; /* Background color */
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    text-align: left;
+}
+
+.profile-info button {
+    background-color: #3889f1;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.profile-info button:hover {
+    background-color: #357ABD;
+}
+
+form {
+    max-width: 37.5rem;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+    display: none;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.625rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+}
+
+.form-group input[type="checkbox"] {
+    width: auto;
+    transform: scale(1.5);
+    margin-left: 0.5rem;
+}
+
+.form-group button {
+    background-color: #3889f1;
+    color: white;
+    padding: 0.625rem 1.25rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.form-group button:hover {
+    background-color: #357ABD;
+}
+
+.posts-table, .members-table, .events-table, .users-table, .branches-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.posts-table th, .members-table th, .events-table th, .users-table th, .branches-table th,
+.posts-table td, .members-table td, .events-table td, .users-table td, .branches-table td {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.posts-table thead, .members-table thead, .events-table thead, .users-table thead, .branches-table thead {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.posts-table tbody tr:nth-child(even),
+.members-table tbody tr:nth-child(even),
+.events-table tbody tr:nth-child(even),
+.users-table tbody tr:nth-child(even),
+.branches-table tbody tr:nth-child(even) {
+    background-color: #e0e0e0;
+}
+
+.posts-table th, .members-table th, .events-table th, .users-table th, .branches-table th {
+    background-color: #4b7cbb;
+    color: white;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    width: 100%;
+}
+
+#add-branch-button, #add-user-button {
+    background-color: #3889f1;
+    color: white;
+    padding: 0.625rem 1.25rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+#add-branch-button:hover, #add-user-button:hover {
+    background-color: #357ABD;
+}
+

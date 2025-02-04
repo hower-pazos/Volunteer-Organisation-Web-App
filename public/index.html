@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="stylesheets/index.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+</head>
+
+<body id="main_page">
+    <div id="navbar-placeholder"></div>
+
+    <!-- Logo here
+    <div id="app1">
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/index.png" alt="Logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#posts">Posts</a></li>
+                <li><a href="/organisations.html">Organisations</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a v-bind:href="website">{{ websiteTag }}</a></li>
+                <li><a href="#donate" class="donate-button">Donate</a></li>
+            </ul>
+        </nav>
+    </header>
+    </div>
+    -->
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Welcome to Volunteer Hub</h1>
+                <p>Connecting You with Opportunities to Make a Difference</p>
+                <a href="organisations.html" class="hero-button">Find Organisations</a>
+            </div>
+        </section>
+        <!-- Hero Section
+        <div class="about-us" id="about">
+            <div class="join-box">JOIN US</div>
+            <div class="about-text">
+                We are dedicated to connecting volunteers with meaningful opportunities. Join us in making a difference in communities around the world.
+            </div>
+        </div>
+        -->
+        <section id="organisations">
+            <h2 class="our-branches">OUR BRANCHES</h2>
+            <div class="organisation-container">
+                <a href="organisation1.html" class="box-button" id="scc">
+                    <span class="button-text">Southern Cross Care</span>
+                </a>
+                <a href="organisation2.html" class="box-button" id="va">
+                    <span class="button-text">Volunteering Australia</span>
+                </a>
+                <a href="organisation3.html" class="box-button" id="vsnt">
+                    <span class="button-text">Volunteering SA & NT</span>
+                </a>
+            </div>
+        </section>
+
+
+
+
+        <div class="join-us">
+            <div class="text-container">
+                <h2 class="join-now-box">WHAT IT'S LIKE TO WORK <br> WITH US</h2>
+                <p>Our volunteers share their experiences and the impact they've made.</p>
+                <a href="about.html" class="join-button">Find out More</a>
+            </div>
+        </div>
+
+        <!-- EVENTS-->
+        <section class="main-content" id="events">
+
+            <div class="events-section">
+                <h2 class="events-heading">EVENTS</h2>
+                <div class="events-container" id="events-page-container">
+                    <!--Events loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Newsletter Subscribe-->
+        <div class="newsletter-section">
+            <div class="newsletter-header">
+                <h2>Sign Up to Our Newsletter</h2>
+                <p>Stay updated with our latest news and offers. Subscribe now!</p>
+            </div>
+            <form class="newsletter-form">
+                <div class="form-group">
+                    <label for="email">Email address:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <button type="submit" class="subscribe-button">Sign up</button>
+            </form>
+        </div>
+
+        <!-- FAQ Section-->
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <button type="button" class="faq-question">What is Volunteer Hub?<span
+                        class="arrow">&#9654;</span></button>
+                <div class="faq-answer">
+                    <p>Volunteer Hub is a platform that connects volunteers with various organizations and events.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button type="button" class="faq-question">How can I volunteer?<span
+                        class="arrow">&#9654;</span></button>
+                <div class="faq-answer">
+                    <p>You can sign up through our website, browse available opportunities, and apply to volunteer.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button type="button" class="faq-question">Are there any requirements?<span
+                        class="arrow">&#9654;</span></button>
+                <div class="faq-answer">
+                    <p>Each organization and event may have specific requirements, which will be listed on their
+                        respective pages.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button type="button" class="faq-question">Can I donate?<span class="arrow">&#9654;</span></button>
+                <div class="faq-answer">
+                    <p>Yes, you can donate through our platform to support various volunteer activities and events.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button type="button" class="faq-question">How can I contact Volunteer Hub?<span
+                        class="arrow">&#9654;</span></button>
+                <div class="faq-answer">
+                    <p>You can reach us through the contact form on our website or email us directly at
+                        contact@volunteerhub.com.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button type="button" class="faq-question">How can I stay updated?<span
+                        class="arrow">&#9654;</span></button>
+                <div class="faq-answer">
+                    <p>Subscribe to our newsletter to receive regular updates about new opportunities and events.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <div id="footer-placeholder"></div>
+        <!-- Footer
+        <footer>
+            <div class="footer-logo">
+                <img src="images/clearLogo.png" alt="Logo">
+            </div>
+            <div class="cta-section">
+                <h2>Ready to get started?<br>Talk to us today</h2>
+                <button type="button" class="cta-button">Get started</button>
+            </div>
+            <div class="footer-content">
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>ABOUT US</h3>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Get in touch</a></li>
+                            <li><a href="#">FAQs</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>VOLUNTEER</h3>
+                        <ul>
+                            <li><a href="#">Testimonials</a></li>
+                            <li><a href="#">How it works</a></li>
+                            <li><a href="#">Events</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>JOIN OUR COMMUNITY</h3>
+                        <p>Join our volunteer community for the latest events and news</p>
+                        <form class="subscribe-form">
+                            <input type="email" placeholder="Enter your email">
+                            <button type="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </footer>
+            -->
+        <script src="javascripts/index.js" defer></script>
+
+
+    </main>
+
+
+</body>
+
+</html>

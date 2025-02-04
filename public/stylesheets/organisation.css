@@ -1,0 +1,166 @@
+@import url('index.css');
+
+
+/*  */
+/* ORGANISATION PAGE */
+/*  */
+.our-branches-organ {
+    background-color: #000000;
+    margin-top: 100px;
+    padding: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+    width: 30%;
+    margin-left: 5%;
+}
+
+.container-organisation {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.box-button-organ {
+    position: relative;
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    margin: 20px;
+    background: linear-gradient(to right, #5ABACC, #3889f2);
+    height: 400px;
+    width: 550px;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.ohc-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: -25px; /* Adjust as needed to overlap properly */
+    position: relative;
+    width: 100%;
+}
+
+.box-button-header1 {
+    position: absolute;
+    bottom: -25px; /* Stick to the bottom of the parent */
+    left: 16.5%;
+    transform: translateX(-50%);
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    background: linear-gradient(to right, #8f5acc, #4438f2);
+    height: 50px;
+    width: 500px;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    z-index: 1;
+}
+
+.box-button-header2 {
+    position: absolute;
+    bottom: -25px; /* Stick to the bottom of the parent */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    background: linear-gradient(to right, #8f5acc, #4438f2);
+    height: 50px;
+    width: 500px;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    z-index: 1;
+}
+
+.box-button-header3 {
+    position: absolute;
+    bottom: -25px; /* Stick to the bottom of the parent */
+    left: 83.3%;
+    transform: translateX(-50%);
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    background: linear-gradient(to right, #8f5acc, #4438f2);
+    height: 50px;
+    width: 500px;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    z-index: 1;
+}
+
+#scc {
+    background-image: url(images/southerncrosscare.png);
+    height: 400px; /* You must set a specified height */
+    background-size: cover;
+}
+#va {
+    background-image: url(images/volunteering_aus.jpg);
+    height: 400px; /* You must set a specified height */
+    background-size: cover;
+}
+
+#vsnt {
+    background-image: url(images/vasnt.jpg);
+    height: 400px; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+}
+
+
+
+@media (max-width: 1200px) {
+    .box-button-organ {
+        width: 100%;
+    }
+
+    .box-button-header {
+        width: calc(100% - 40px); /* Adjust based on the container padding/margins */
+        left: 20px;
+        transform: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .our-branches-organ {
+        margin-left: 20px;
+        width: auto;
+    }
+
+    .container-organisation {
+        flex-direction: column;
+    }
+
+    .box-button-organ {
+        width: 90%;
+    }
+
+    .box-button-header {
+        width: 90%;
+        left: 5%;
+    }
+}

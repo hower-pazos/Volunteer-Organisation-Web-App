@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign Up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/register.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <form id="addUserForm" method="post">
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" id="first-name" name="first_name" placeholder="First Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="last-name" name="last_name" placeholder="Last Name" required>
+                    </div>
+                    <div id="spacer"></div>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                  <input type="text" id="username" name="username" placeholder="Username" required>
+              </div>
+
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirm Password" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="street-number" name="street_number" placeholder="Street Number" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="address-line-1" name="address_line_1" placeholder="Address Line 1" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" id="suburb" name="suburb" placeholder="Suburb" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="state" name="state" placeholder="State" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="post-code" name="post_code" placeholder="Post Code" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="phone-number" name="phone_number" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+               $(document).ready(function() {
+            $("#addUserForm").submit(function(event) {
+                event.preventDefault();
+
+                var formData = {
+                    first_name: $("#first-name").val(),
+                    last_name: $("#last-name").val(),
+                    email: $("#email").val(),
+                    username: $("#username").val(),
+                    password: $("#password").val(),
+                    confirm_password: $("#confirm-password").val(),
+                    phone_number: $("#phone-number").val(),
+                    street_number: $("#street-number").val(),
+                    address_line_1: $("#address-line-1").val(),
+                    suburb: $("#suburb").val(),
+                    state: $("#state").val(),
+                    post_code: $("#post-code").val()
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/register",
+                    data: JSON.stringify(formData),
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function(data) {
+                        if (data.success) {
+                            alert('User registered successfully!');
+                            window.location.href = '/login.html';
+                            $("#addUserForm")[0].reset(); // Clear the form
+                        } else {
+                            alert(data.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX error:', status, error);
+                        alert('An error occurred. Please try again.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

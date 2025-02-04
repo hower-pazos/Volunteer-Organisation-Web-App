@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/login.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+</head>
+<body id="login_body">
+    <div class="login_container">
+        <div class="volunteer_logo">
+            <a href="/index.html"><img src="images/clearLogo.png" alt="Volunteer Organisation"></a>
+        </div>
+        <div class="login_form-container">
+            <form class="login_form" id="loginForm">
+                <input type="text" id="email_or_username" name="email_or_username" placeholder="Email Address or Username:" required>
+                <input type="password" id="password" name="password" placeholder="Password:" required>
+                <a href="#" class="forgot-password">FORGOT PASSWORD?</a>
+                <input type="submit" value="Login">
+            </form>
+            <div class="social-login">
+                <p>OR SIGN IN WITH</p>
+                <div class="social-icons">
+                    <a href="/auth/google"><img src="icons/google.png" alt="Google"></a>
+                </div>
+            </div>
+            <div class="signup-link">
+                <p>Not a member? <a href="/register.html">Sign up</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="javascripts/vue.js" defer></script>
+    <script>
+        $(document).ready(function() {
+            $("#loginForm").submit(function(event) {
+                event.preventDefault();
+                var formData = {
+                    email_or_username: $("#email_or_username").val(),
+                    password: $("#password").val()
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "/login",
+                    data: formData,
+                    dataType: "json",
+                    encode: true,
+                    success: function(data) {
+                        if (data.success) {
+                            alert('Login successful');
+                            window.location.href = data.redirectUrl;
+                        } else {
+                            alert('Invalid email/username or password');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX error:', status, error);
+                        alert('An error occurred. Please try again.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

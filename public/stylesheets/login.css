@@ -1,0 +1,114 @@
+/* CSS for LOGIN PAGE (NELSON) */
+
+.volunteer_logo {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content:center;
+}
+
+p {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+#login_body {
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.login_container {
+  margin: auto;
+  margin-top: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.login_form-container {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 20px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+input[type="email"]::placeholder,
+input[type="password"]::placeholder {
+  color: gray;
+}
+
+.forgot-password {
+  color: white;
+  text-decoration: underline;
+  font-size: 12px;
+  margin-bottom: 10px;
+  align-self: flex-end;
+}
+
+input[type="submit"] {
+  padding: 10px;
+  background-color: #076df2;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  margin: auto;
+  max-width: 50%;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+input[type="submit"]:hover {
+  background-color: #3873f1;
+}
+
+.social-login {
+  text-align: center;
+  margin-top: 20px;
+  color: whitesmoke;
+}
+
+.social-login p {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-icons a img {
+  width: 40px;
+  height: 40px;
+}
+
+.signup-link {
+  color: whitesmoke;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.signup-link a {
+  color: #0554f2;
+  text-decoration: underline;
+}

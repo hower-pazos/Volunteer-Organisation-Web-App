@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/index.png" alt="Logo">
+            </a>
+        </div>
+        <nav id="myNavBar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="posts.html">Posts</a></li>
+                <li><a href="organisations.html">Organisations</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li v-show="serverLoginFlag"><a href="dashboard.html">Settings</a></li>
+                <li>
+                    <a v-if="serverLoginFlag" @click.prevent="logout" class="donate-button">{{ butttonTag }}</a>
+                    <a v-else href="login.html" class="donate-button">{{ butttonTag }}</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <script src="javascripts/vue.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+@import url('index.css');
+
+/* posts.html */
+#posts-app h1{
+    display: flex;
+    margin-top: 20%;
+}
+
+.posts-list-container {
+    width: 100%;
+    margin-bottom: 20%;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-card {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    list-style-type: none;
+}
+
+.post-card:last-child {
+    border-bottom: none;
+}
+
+.post-title {
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 1.4em;
+}
+
+.post-content {
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.post-time {
+    font-size: 0.9em;
+    color: #777;
+}
+
+.post-user, .post-branch {
+    font-size: 0.9em;
+    color: #555;
+}

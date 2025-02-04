@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteering Australia</title>
+    <link rel="stylesheet" href="stylesheets/individualorg.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+</head>
+
+<body id="organisations_page">
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <div class="individual-org">
+            <div class="org-content">
+                <div class="org-details">
+                    <h1>Volunteering Australia</h1>
+                    <div id="org-image1"></div>
+                    <p>Volunteering Australia Inc. was founded in 1997 under the National Secretariat Program and is the peak body for volunteering in Australia.</p>
+                    <div class="org-buttons">
+                        <button type="button" class="join-button" id="join-us-button">Join Us</button>
+                        <button type="button" class="email-button" id="email-signup-button">Sign Up for Emails</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+        <section class="events-list">
+            <h2>Ongoing Events</h2>
+            <div class="events-container" id="events-page-container2">
+                <!-- Events will be loaded here by JavaScript -->
+            </div>
+        </section>
+
+         <!-- FOOTER -->
+        <div id="footer-placeholder"></div>
+        <script>
+            document.getElementById('join-us-button').addEventListener('click', function() {
+                const branchId = 2; // Volunteering Australia branch_id, update with the actual ID
+                fetch('/api/join-branch', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ branchId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('You have successfully joined the branch!');
+                        // Optionally, you can redirect the user or update the UI
+                    } else {
+                        alert('Failed to join the branch. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred. Please try again.');
+                });
+            });
+
+            // Function to update email permissions
+            document.getElementById('email-signup-button').addEventListener('click', function() {
+                fetch('/api/update-email-permissions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('You have successfully signed up for emails!');
+                        // Optionally, you can update the UI
+                    } else {
+                        alert('Failed to sign up for emails. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred. Please try again.');
+                });
+            });
+        </script>
+    <script src="javascripts/index.js"></script>
+</body>
+</html>
